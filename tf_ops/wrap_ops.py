@@ -4,13 +4,11 @@ Written by Yifeng-Chen
 """
 
 import tensorflow as tf
-from tensorflow.contrib.layers.python.layers import layers as layers_lib
-from tensorflow.contrib.layers.python.layers import regularizers
 from tensorflow.contrib.layers.python.layers import initializers
+from tensorflow.contrib.layers.python.layers import layers as layers_lib
+from tensorflow.contrib.layers.python.layers import utils
 from tensorflow.python.ops import init_ops
-
 from tensorflow.python.ops import nn_ops
-
 
 add_arg_scope = tf.contrib.framework.add_arg_scope
 
@@ -121,43 +119,68 @@ def conv2d(inputs,
     return conv
 
 
-def conv2d_trans(
-    inputs,
-    num_outputs,
-    kernel_size,
-    stride=1,
-    padding='SAME',
-    activation_fn=tf.nn.relu,
-    normalizer_fn=None,
-    normalizer_params=None,
-    weights_initializer=initializers.xavier_initializer(),
-    weights_regularizer=None,
-    biases_initializer=init_ops.zeros_initializer(),
-    biases_regularizer=None,
-    reuse=None,
-    variables_collections=None,
-    outputs_collections=None,
-    trainable=True,
-    scope=None):
-    return layers_lib.conv2d_transpose(
-            inputs,
-            num_outputs,
-            kernel_size,
-            stride=stride,
-            padding=padding,
-            activation_fn=activation_fn,
-            normalizer_fn=normalizer_fn,
-            normalizer_params=normalizer_params,
-            weights_initializer=weights_initializer,
-            weights_regularizer=weights_regularizer,
-            biases_initializer=biases_initializer,
-            biases_regularizer=biases_regularizer,
-            reuse=reuse,
-            variables_collections=variables_collections,
-            outputs_collections=outputs_collections,
-            trainable=trainable,
-            scope=scope
+@add_arg_scope
+def trans_conv2d(inputs,
+                 num_outputs,
+                 kernel_size,
+                 output_shape,
+                 stride=1,
+                 padding='SAME',
+                 activation_fn=nn_ops.relu,
+                 normalizer_fn=None,
+                 normalizer_params=None,
+                 weights_initializer=initializers.xavier_initializer(),
+                 weights_regularizer=None,
+                 biases_initializer=init_ops.zeros_initializer(),
+                 biases_regularizer=None,
+                 reuse=None,
+                 variables_collections=None,
+                 outputs_collections=None,
+                 scope=None):
+    """
+    trans_convolution with specified output_shape
+    """
+    if type(stride) in (int, float):
+        stride = (stride, stride)
+    if type(kernel_size) is int:
+        kernel_size = (kernel_size, kernel_size)
+
+    with tf.variable_scope(scope, 'trans_conv2d', reuse=reuse) as sc:
+        indim = tensor_shape(inputs)[-1]
+        filters = get_variable(name='weights',
+                               shape=kernel_size + (num_outputs, indim),
+                               init=weights_initializer,
+                               reg=weights_regularizer,
+                               collections=variables_collections)
+        if biases_initializer is not None:
+            biases = get_variable(
+                name='biases',
+                shape=(num_outputs),
+                init=biases_initializer,
+                reg=biases_regularizer,
+                collections=variables_collections
+            )
+
+    outputs = tf.nn.conv2d_transpose(
+        inputs,
+        filters,
+        output_shape,
+        strides=(1) + stride + (1),
+        padding=padding,
+        name=scope
     )
+
+    if biases_initializer is not None:
+        outputs = outputs + biases
+
+    if normalizer_fn is not None:
+        normalizer_params = normalizer_params or {}
+        outputs = normalizer_fn(outputs, **normalizer_params)
+
+    if activation_fn is not None:
+        outputs = activation_fn(outputs)
+
+    return utils.collect_named_outputs(outputs_collections, sc.name, outputs)
 
 
 @add_arg_scope
