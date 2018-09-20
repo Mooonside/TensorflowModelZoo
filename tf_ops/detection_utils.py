@@ -3,7 +3,7 @@ import tensorflow as tf
 
 slim = tf.contrib.slim
 from tensorflow.contrib.layers.python.layers import conv2d
-from tf_ops.wrap_ops import tensor_shape, smooth_l1
+from tf_ops.wrap_ops import tensor_shape, smooth_l1, safe_divide
 
 POS_NUMBER_PER_LAYER_SCOPE = 'POS_NUMBER_PER_LAYER_SCOPE'
 NEG_NUMBER_PER_LAYER_SCOPE = 'NEG_NUMBER_PER_LAYER_SCOPE'

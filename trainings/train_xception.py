@@ -23,8 +23,8 @@ flags.DEFINE_integer('epoch_num', 5, 'epoch_nums')
 flags.DEFINE_integer('epoch_len', TRAIN_NUM, 'epoch_len')
 flags.DEFINE_integer('batch_size', 16, 'batch size')
 # 0.045 in xception paper
-# LOG : 0.045/10 => 0.02 for 6 => 0.01 for 5
-flags.DEFINE_float('weight_learning_rate', 0.01, 'weight learning rate')
+# LOG : 0.045/10 => 0.02 for 5 => 0.01 for 10 => 0.0025
+flags.DEFINE_float('weight_learning_rate', 0.0025, 'weight learning rate')
 # 0.05 in train ILSVRC in one hour
 # flags.DEFINE_float('weight_learning_rate', 0.05, 'weight learning rate')
 

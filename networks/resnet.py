@@ -5,6 +5,7 @@ from tensorflow.contrib.layers.python.layers import initializers
 from tensorflow.contrib.layers.python.layers import regularizers
 from tensorflow.contrib.layers.python.layers import utils
 from tensorflow.contrib.slim.python.slim.nets import resnet_utils
+from tensorflow.python.framework.constant_op import constant
 from tensorflow.python.ops import math_ops
 from tensorflow.python.ops import nn_ops
 from tensorflow.python.ops import variable_scope
@@ -34,6 +35,13 @@ def resnet_arg_scope_gn(weight_decay=0.0001, group_norm_num=32, group_norm_dim=N
                            eps=1e-05, affine=True):
                 with arg_scope([max_pool2d], padding='SAME') as arg_sc:
                     return arg_sc
+
+
+def _detectron_img_preprocess(img):
+    # turn to BGR order
+    img  = img[..., ::-1]
+    img -= constant([[[102.9801, 115.9465, 122.7717]]])
+    return img
 
 
 @add_arg_scope
@@ -192,7 +200,8 @@ def resnet_v1(inputs,
               global_pool=True,
               include_root_block=True,
               reuse=None,
-              scope=None):
+              scope=None,
+              normalize_inside=True):
     """Removes output_stride, use pre-defined rate
 
     Returns:
@@ -209,6 +218,10 @@ def resnet_v1(inputs,
     Raises:
       ValueError: If the target output_stride is not valid.
     """
+    if normalize_inside:
+        # if no normalization is used outside, use detectron style normalization
+        inputs = _detectron_img_preprocess(inputs)
+
     with variable_scope.variable_scope(
             scope, 'resnet_v1', [inputs], reuse=reuse) as sc:
         end_points_collection = sc.original_name_scope + '_end_points'
@@ -224,7 +237,9 @@ def resnet_v1(inputs,
                 net = stack_blocks_dense(net, blocks)
                 if global_pool:
                     # Global average pooling.
-                    net = math_ops.reduce_mean(net, [1, 2], name='pool5', keep_dims=True)
+                    net = math_ops.reduce_mean(net, [1, 2], name='pool5', keepdims=True)
+                    net = utils.collect_named_outputs(end_points_collection,
+                                                      sc.name+'/gap', net)
                 if num_classes is not None:
                     net = conv2d(
                         net,

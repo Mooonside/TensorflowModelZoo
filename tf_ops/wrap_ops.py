@@ -5,6 +5,7 @@ Written by Yifeng-Chen
 
 import tensorflow as tf
 from tensorflow.contrib.layers.python.layers import initializers
+from tensorflow.contrib.layers.python.layers import regularizers
 from tensorflow.contrib.layers.python.layers import layers as layers_lib
 from tensorflow.contrib.layers.python.layers import utils
 from tensorflow.python.ops import init_ops
@@ -396,7 +397,7 @@ def focal_softmax_with_logits(predictions, labels,
     logits = tf.reshape(predictions, shape=[-1, dim])
     labels = tf.reshape(labels, [-1])
     # which is all ones
-    mask = tf.cast(tf.not_equal(labels, -1), tf.float32)
+    mask = tf.ones_like(labels, dtype=tf.float32)
     for ignore in ignore_labels:
         mask *= tf.cast(tf.not_equal(labels, ignore), tf.float32)
 
@@ -466,6 +467,56 @@ def softmax_with_logits(predictions, labels,
     labels = tf.stop_gradient(labels)
     loss = tf.nn.softmax_cross_entropy_with_logits_v2(
         logits=logits, labels=labels, name='sample_wise_loss')
+
+    loss *= mask
+    if weights is not None:
+        loss *= weights
+
+    if reduce_method == 'nonzero_mean':
+        non_zero_items = tf.reduce_sum(tf.cast(tf.not_equal(loss, 0), tf.float32))
+        non_zero_items = tf.maximum(non_zero_items, 1)
+        loss = tf.divide(tf.reduce_sum(loss), non_zero_items, name='mean_loss')
+    elif reduce_method == 'sum':
+        loss = tf.reduce_sum(loss)
+    else:
+        loss = tf.reduce_mean(loss)
+
+    if loss_collections is not None:
+        tf.add_to_collection(loss_collections, loss)
+    return loss
+
+
+@add_arg_scope
+def binary_ce_loss(logits,
+                        labels,
+                        ignore_labels=(255,),
+                        loss_collections=LOSS_COLLECTIONS,
+                        reduce_method='nonzero_mean',
+                        weights=None,
+                        eps=1e-7):
+    '''
+    binary cross entropy loss
+    :param logits: [?, ?, ?, c]
+    :param labels: [?, ?, ?]
+    :return:
+    '''
+    dim = tensor_shape(logits)[-1]
+    # add sigmoid
+    logits = tf.nn.sigmoid(logits)
+    scores = tf.reshape(logits, shape=[-1, dim])
+    labels = tf.reshape(labels, [-1])
+    # which is all ones
+    mask = tf.ones_like(labels, dtype=tf.float32)
+    for ignore in ignore_labels:
+        mask *= tf.cast(tf.not_equal(labels, ignore), tf.float32)
+
+    labels = tf.one_hot(labels, depth=dim)
+    labels = tf.stop_gradient(labels)
+    # calculate binary cross entropy
+    binary_cross_entropy = labels * -1.0 * tf.log(scores + eps) \
+                           + (1.0 - labels) * -1.0 * tf.log(1.0 - scores + eps)
+
+    loss = tf.reduce_sum(binary_cross_entropy, axis=-1)
 
     loss *= mask
     if weights is not None:
