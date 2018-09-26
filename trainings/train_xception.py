@@ -89,15 +89,16 @@ with tf.device(store_device):
     # read data
     reshape_size = [FLAGS.reshape_height, FLAGS.reshape_weight]
     dataset = get_dataset(FLAGS.data_dir,
-                          FLAGS.batch_size,
+                          FLAGS.batch_size * GPU_NUMS,
                           FLAGS.epoch_num,
                           reshape_size,
                           augment_func=inception_augmentation,
                           num_readers=4)
+    name, image, label = get_next_batch(dataset)
 
-
-def inference_to_loss():
-    name_batch, image_batch, label_batch = get_next_batch(dataset)
+def inference_to_loss(gpu_id):
+    image_batch = image[gpu_id*FLAGS.batch_size:(gpu_id+1)*FLAGS.batch_size, ...]
+    label_batch = label[gpu_id*FLAGS.batch_size:(gpu_id+1)*FLAGS.batch_size, ...]
     with arg_scope(xception_arg_scope_gn(weight_decay=FLAGS.weight_decay)):
         net, end_points = xception_65(image_batch,
                                       global_pool=True,
@@ -162,7 +163,7 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=tf.AUTO_REUSE):
         with tf.device('/GPU:{}'.format(gpu_id)):
             with tf.name_scope('tower_{}'.format(gpu_id)):
                 clone_scope = tf.contrib.framework.get_name_scope()
-                loss, acc = inference_to_loss()
+                loss, acc = inference_to_loss(gpu_id)
                 reg_loss = tf.add_n(tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES))
 
                 if gpu_id == 0:
@@ -180,7 +181,6 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=tf.AUTO_REUSE):
                         bias_vars.append(var)
                     else:
                         weight_vars.append(var)
-                # print(len(weight_vars), len(bias_vars))
 
                 weight_grads = optimizer.compute_gradients(total_loss, weight_vars)
                 weight_grads = [(tf.clip_by_norm(grad, clip_norm=FLAGS.clip_grad_by_norm), var)
@@ -243,12 +243,6 @@ with tf.name_scope('summary_gathers'):
 #
 merge_summary = tf.summary.merge_all()
 train_writer = tf.summary.FileWriter(FLAGS.summaries_dir, sess.graph)
-# saver = tf.train.Saver(keep_checkpoint_every_n_hours=2, max_to_keep=5)
-# print(tf.get_collection(tf.GraphKeys.SAVEABLE_OBJECTS))
-# # print(tf.global_variables())
-
-# may want to reinitialize last layer
-# saver = tf.train.Saver(var_list = [ i for i in tf.global_variables() if not i.name.startswith('xception_65/logits')])
 saver = tf.train.Saver(max_to_keep=5)
 
 # initialize
@@ -270,11 +264,6 @@ else:
     print('Training From Scartch TvT')
     sess.run(tf.global_variables_initializer())
 
-# reinitialize softmax
-# last_layer_vars = [ i for i in tf.global_variables() if i.name.startswith('xception_65/logits')]
-# last_layer_vars_init = tf.variables_initializer(last_layer_vars)
-# sess.run(last_layer_vars_init)
-# sess.run(tf.assign(global_step, 0))
 
 try:
     local_step = 0
@@ -290,8 +279,6 @@ try:
             toc = time()
             train_writer.add_summary(summary, step)
             local_step += 1
-            # save model per xxx steps
-
             print("{}-{}-{} : loss {:.4f} acc {:.4f} cost {:.3f}s"
                   .format(epoch_id, batch_id, step, losses_v, accs_v * 100, toc - tic))
 
