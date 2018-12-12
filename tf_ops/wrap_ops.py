@@ -46,6 +46,11 @@ def tensor_shape(tensor):
 
 
 @add_arg_scope
+def tensor_rank(tensor):
+    return len(tensor_shape(tensor))
+
+
+@add_arg_scope
 def get_variable(name, shape, dtype=tf.float32, device='/CPU:0', init=None, reg=None, collections=None):
     with tf.device(device):
         var = tf.get_variable(name=name, shape=shape, dtype=dtype,
@@ -75,7 +80,7 @@ def same_padding(inputs, ksize, ratios):
         pad_end = pad_total - pad_beg
         pad_array.append([pad_beg, pad_end])
     pad_array.append([0, 0])
-
+    pad_array = tf.convert_to_tensor(pad_array, dtype=tf.int32)
     padded_inputs = tf.pad(inputs, pad_array)
     return padded_inputs
 
@@ -87,6 +92,7 @@ def conv2d(inputs,
            stride=1,
            rate=1,
            padding='SAME',
+           explicit_padding=True,
            activation_fn=nn_ops.relu,
            normalizer_fn=None,
            normalizer_params=None,
@@ -97,16 +103,21 @@ def conv2d(inputs,
            outputs_collections=None,
            scope=None):
     """
-    use equally padding
+    Avoid layer.conv2d / nn.conv2d with same padding!, their same padding mode is strange!
+    when stride is 1, it does equal same padding
+    when stride is > 1, it pads at features's right side
     """
-    if padding == 'SAME':
-        inputs = same_padding(inputs, [kernel_size, kernel_size], [rate, rate])
+    kernel_size = [kernel_size, kernel_size] if type(kernel_size) is int else kernel_size
+    rate = [rate, rate] if type(rate) is int else rate
+    if padding == 'SAME' and explicit_padding:
+        inputs = same_padding(inputs, kernel_size, rate)
+        padding = 'VALID'
 
     conv = layers_lib.conv2d(inputs,
                              num_outputs,
                              kernel_size,
                              stride=stride,
-                             padding='VALID',
+                             padding=padding,
                              rate=rate,
                              activation_fn=activation_fn,
                              normalizer_fn=normalizer_fn,
@@ -251,6 +262,7 @@ def sep_conv2d(inputs,
                rate=1,
                depth_multiplier=1,
                padding='SAME',
+               explicit_padding=True,
                activation_fn=tf.nn.relu,
                activation_fn_middle=None,
                normalizer_fn=None,
@@ -264,22 +276,27 @@ def sep_conv2d(inputs,
                scope='separate_conv'):
     with tf.variable_scope(scope, 'separate_conv'):
         with tf.variable_scope('depthwise_conv'):
-            if padding == 'SAME':
-                inputs = same_padding(inputs, [kernel_size, kernel_size], [rate, rate])
+            kernel_size = [kernel_size, kernel_size] if type(kernel_size) is int else kernel_size
+            stride = [stride, stride] if type(stride) is int else stride
+            rate = [rate, rate] if type(rate) is int else rate
+
+            if padding == 'SAME' and explicit_padding:
+                inputs = same_padding(inputs, kernel_size, rate)
+                padding = 'VALID'
 
             indim = tensor_shape(inputs)[-1]
             depthwise_filter = get_variable(name='depthwise_weights',
-                                            shape=[kernel_size, kernel_size] + [indim, depth_multiplier],
+                                            shape=kernel_size+ [indim, depth_multiplier],
                                             init=weights_initializer,
                                             reg=depthwise_weights_regularizer,
                                             collections=WEIGHT_COLLECTIONS)
             conv = tf.nn.depthwise_conv2d(
                 input=inputs,
                 filter=depthwise_filter,
-                strides=[1] + [stride, stride] + [1],
-                padding='VALID',
+                strides=[1] + stride + [1],
+                padding=padding,
                 # only specify 2d here!
-                rate=[rate, rate],
+                rate=rate,
                 name='depthwise_conv',
                 data_format="NHWC"
             )
@@ -326,18 +343,28 @@ def sep_conv2d(inputs,
 
 
 @add_arg_scope
-def max_pool2d(inputs, kernel_size=2, stride=2, padding='SAME', outputs_collections=None, scope=None):
+def max_pool2d(inputs,
+               kernel_size=2,
+               stride=2,
+               padding='SAME',
+               explicit_padding=True,
+               outputs_collections=None,
+               scope=None):
     """
     eqaully same padding for max_pool2d
     """
-    if padding == 'SAME':
-        inputs = same_padding(inputs, [kernel_size, kernel_size], [1, 1])
+    kernel_size = [kernel_size, kernel_size] if type(kernel_size) is int else kernel_size
+    stride = [stride, stride] if type(stride) is int else stride
+
+    if padding == 'SAME' and explicit_padding:
+        inputs = same_padding(inputs, kernel_size, [1, 1])
+        padding = 'VALID'
 
     pool = layers_lib.max_pool2d(
         inputs,
         kernel_size,
         stride=stride,
-        padding='VALID',
+        padding=padding,
         data_format='NHWC',
         outputs_collections=outputs_collections,
         scope=scope
@@ -346,7 +373,7 @@ def max_pool2d(inputs, kernel_size=2, stride=2, padding='SAME', outputs_collecti
 
 
 @add_arg_scope
-def avg_pool2d(inputs, kernel_size=2, stride=2, padding='SAME', scope=None, outputs_collections=None):
+def avg_pool2d(inputs, kernel_size=2, stride=2, padding='SAME', explicit_padding=True, scope=None, outputs_collections=None):
     """
     SAME PADDING equally
     :param inputs: [N, H, W, C]
@@ -357,14 +384,18 @@ def avg_pool2d(inputs, kernel_size=2, stride=2, padding='SAME', scope=None, outp
     :param outputs_collections: add result to some collection
     :return:
     """
-    if padding == 'SAME':
-        inputs = same_padding(inputs, [kernel_size, kernel_size], [1, 1])
+    kernel_size = [kernel_size, kernel_size] if type(kernel_size) is int else kernel_size
+    stride = [stride, stride] if type(stride) is int else stride
+
+    if padding == 'SAME' and explicit_padding:
+        inputs = same_padding(inputs, kernel_size, [1, 1])
+        padding = 'VALID'
 
     pool = layers_lib.avg_pool2d(
         inputs,
         kernel_size,
         stride=stride,
-        padding='VALID',
+        padding=padding,
         data_format='NHWC',
         outputs_collections=outputs_collections,
         scope=scope
@@ -468,12 +499,14 @@ def softmax_with_logits(predictions, labels,
     loss = tf.nn.softmax_cross_entropy_with_logits_v2(
         logits=logits, labels=labels, name='sample_wise_loss')
 
-    loss *= mask
     if weights is not None:
-        loss *= weights
+        weights = tf.reshape(weights, [-1])
+        mask *= weights
+
+    loss *= mask
 
     if reduce_method == 'nonzero_mean':
-        non_zero_items = tf.reduce_sum(tf.cast(tf.not_equal(loss, 0), tf.float32))
+        non_zero_items = tf.reduce_sum(tf.cast(tf.not_equal(mask, 0), tf.float32))
         non_zero_items = tf.maximum(non_zero_items, 1)
         loss = tf.divide(tf.reduce_sum(loss), non_zero_items, name='mean_loss')
     elif reduce_method == 'sum':
@@ -604,3 +637,41 @@ def drop_out(inputs, keep_prob, is_training=True, name=None):
         return tf.nn.dropout(inputs, keep_prob=keep_prob, name=name)
     else:
         return inputs
+
+
+def reshape_last_dim(tensor, rlist):
+    shape = tensor_shape(tensor)[:-1]
+    shape = shape + rlist
+    return tf.reshape(tensor_shape, shape)
+
+
+def fd_iter_matmul(a, b):
+    """
+    stack [a[idx, ...].dot(b[idx, ...])], when idx is not known
+    :param a: [?, K, C]
+    :param b: [?, C, .....]
+    :return:  [?, K, ....]
+    """
+    new_shape = tf.concat([tf.shape(a)[:-1], tf.shape(b)[2:]], axis=0)
+    out = tf.zeros(new_shape, dtype=a.dtype)
+
+    def cond(idx, a, b, out):
+        return idx < tf.shape(a)[0]
+
+
+    def body(idx, a, b, out):
+        a_slice = a[idx, ...]
+        b_slice = b[idx, ...]
+        dot = tf.tensordot(a_slice, b_slice, axes=[[-1], [0]])
+        rank = tensor_rank(dot)
+
+        dot = dot[tf.newaxis, ...]
+        sel = tf.one_hot(idx, tf.shape(a)[0])
+        sel = tf.reshape(sel, [-1] + [1]*(rank))
+        dot = dot * sel
+        out += dot
+        return [idx+1, a, b, out]
+
+    idx = 0
+    _, _, _, out =tf.while_loop(cond=cond, body=body,loop_vars=[idx, a, b, out])
+    return out

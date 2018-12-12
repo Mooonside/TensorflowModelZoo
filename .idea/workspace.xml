@@ -1,8 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f659e973-1863-407a-ab17-66b313265f94" name="Default" comment="">
+    <list default="true" id="f659e973-1863-407a-ab17-66b313265f94" name="Default" comment="update train script">
+      <change beforePath="" afterPath="$PROJECT_DIR$/evaluatings/eval_dfm_res101.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/evaluatings/eval_dfm_res50.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/evaluatings/eval_res101.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/evaluatings/eval_res50.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/scripts/train_deform_res101.sh" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/trainings/train_dfm_res101.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/trainings/train_dfm_res50.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/TensorflowModelZoo.iml" afterPath="$PROJECT_DIR$/.idea/TensorflowModelZoo.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/datasets/__init__.py" afterPath="$PROJECT_DIR$/datasets/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/datasets/ilsvrc/__init__.py" afterPath="$PROJECT_DIR$/datasets/ilsvrc/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/datasets/ilsvrc/ilsvrc_reader.py" afterPath="$PROJECT_DIR$/datasets/ilsvrc/ilsvrc_reader.py" />
+      <change beforePath="$PROJECT_DIR$/datasets/ilsvrc/ilsvrc_writer.py" afterPath="$PROJECT_DIR$/datasets/ilsvrc/ilsvrc_writer.py" />
+      <change beforePath="$PROJECT_DIR$/eval.py" afterPath="$PROJECT_DIR$/scripts/train_deform_res50.sh" />
+      <change beforePath="$PROJECT_DIR$/networks/__init__.py" afterPath="$PROJECT_DIR$/networks/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/networks/resnet.py" afterPath="$PROJECT_DIR$/networks/resnet.py" />
+      <change beforePath="$PROJECT_DIR$/networks/vgg.py" afterPath="$PROJECT_DIR$/networks/vgg.py" />
+      <change beforePath="$PROJECT_DIR$/networks/xception.py" afterPath="$PROJECT_DIR$/networks/xception.py" />
+      <change beforePath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/inspect_ilsvrc-checkpoint.ipynb" afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/inspect_ilsvrc-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/validate_resnet_group_norm-checkpoint.ipynb" afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/validate_resnet_group_norm-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/validate_xception_group_norm-checkpoint.ipynb" afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/validate_xception_group_norm-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/notebooks/inspect_ilsvrc.ipynb" afterPath="$PROJECT_DIR$/notebooks/inspect_ilsvrc.ipynb" />
+      <change beforePath="$PROJECT_DIR$/notebooks/validate_resnet_group_norm.ipynb" afterPath="$PROJECT_DIR$/notebooks/validate_resnet_group_norm.ipynb" />
+      <change beforePath="$PROJECT_DIR$/notebooks/validate_xception_group_norm.ipynb" afterPath="$PROJECT_DIR$/notebooks/validate_xception_group_norm.ipynb" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/__init__.py" afterPath="$PROJECT_DIR$/tf_ops/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/augmentation.py" afterPath="$PROJECT_DIR$/tf_ops/augmentation.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/__init__.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/BUILD" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/__init__.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/cuda_config.h" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/cuda_config.h" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.cc" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.cc" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.cu.cc" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.cu.cc" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.cu.o" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.cu.o" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.h" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.h" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.so" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.so" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv_grad.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv_grad.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv_op.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv_op.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv_util.h" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv_util.h" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/g++_complie.sh" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/g++_complie.sh" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/nvcc_compile.sh" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/nvcc_compile.sh" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/__init__.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/g++_complie.sh" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/g++_complie.sh" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/nvcc_compile.sh" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/nvcc_compile.sh" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning.cc" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning.cc" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning.cu.cc" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning.cu.cc" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning.h" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning.h" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning_op.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning_op.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/__init__.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/g++_complie.sh" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/g++_complie.sh" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/nvcc_compile.sh" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/nvcc_compile.sh" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling.cc" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling.cc" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling.cu.cc" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling.cu.cc" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling.cu.o" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling.cu.o" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling.h" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling.h" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling.so" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling.so" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling_op.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling_op.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/psroi_pooling_test.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/psroi_pooling_test.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/__init__.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/compile.sh" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/compile.sh" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/roi_align.cc" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/roi_align.cc" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/roi_align.cu.cc" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/roi_align.cu.cc" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/roi_align.h" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/roi_align.h" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/roi_align_op.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_layers/roi_align/roi_align_op.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/cuda_ops.py" afterPath="$PROJECT_DIR$/tf_ops/cuda_ops.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/detection_utils.py" afterPath="$PROJECT_DIR$/tf_ops/detection_utils.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/visualization.py" afterPath="$PROJECT_DIR$/tf_ops/visualization.py" />
+      <change beforePath="$PROJECT_DIR$/tf_ops/wrap_ops.py" afterPath="$PROJECT_DIR$/tf_ops/wrap_ops.py" />
+      <change beforePath="$PROJECT_DIR$/tf_utils.py" afterPath="$PROJECT_DIR$/tf_utils.py" />
+      <change beforePath="$PROJECT_DIR$/trainings/__init__.py" afterPath="$PROJECT_DIR$/trainings/__init__.py" />
       <change beforePath="$PROJECT_DIR$/trainings/train_xception.py" afterPath="$PROJECT_DIR$/trainings/train_xception.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,27 +87,38 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/TensorflowModelZoo$deformable_resnet.coverage" NAME="deformable_resnet Coverage Results" MODIFIED="1540783535926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/networks" />
     <SUITE FILE_PATH="coverage/TensorflowModelZoo$vgg.coverage" NAME="vgg Coverage Results" MODIFIED="1536638594874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/networks" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand />
+    <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="vgg.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/networks/vgg.py">
+      <file leaf-file-name="eval_res50.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/evaluatings/eval_res50.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="63" column="31" lean-forward="false" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
-              <folding>
-                <element signature="e#51#89#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="646">
+              <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_xception.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/trainings/train_xception.py">
+      <file leaf-file-name="eval_dfm_res101.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/evaluatings/eval_dfm_res101.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="2006">
+              <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -41,19 +126,132 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wrap_ops.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tf_ops/wrap_ops.py">
+      <file leaf-file-name="ilsvrc_writer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/datasets/ilsvrc/ilsvrc_writer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-216">
-              <caret line="238" column="37" lean-forward="true" selection-start-line="238" selection-start-column="37" selection-end-line="238" selection-end-column="37" />
+            <state relative-caret-position="1615">
+              <caret line="107" column="44" lean-forward="false" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_dfm_res101.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/trainings/train_dfm_res101.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="58" column="41" lean-forward="false" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
               <folding>
-                <element signature="e#66#89#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="imagenet_lsvrc_2015_synsets.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/datasets/ilsvrc/imagenet_lsvrc_2015_synsets.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_deform_res101.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/train_deform_res101.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="88" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_dfm_res50.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trainings/train_dfm_res50.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3723">
+              <caret line="230" column="64" lean-forward="false" selection-start-line="230" selection-start-column="47" selection-end-line="230" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="eval_dfm_res50.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/evaluatings/eval_dfm_res50.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="eval_res101.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/evaluatings/eval_res101.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_deform_res50.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/train_deform_res50.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>relu</find>
+      <find>weig</find>
+      <find>weight</find>
+      <find>deform_conv2d</find>
+      <find>print</find>
+      <find>is__</find>
+      <find>is_training</find>
+      <find>normakuz</find>
+      <find>n01773157</find>
+      <find>n04141975</find>
+      <find>n15075141</find>
+      <find>n01440764</find>
+      <find>n02526121</find>
+      <find>label</find>
+      <find>acc</find>
+      <find>datasets</find>
+      <find>n02607072</find>
+      <find>depth</find>
+      <find>clip</find>
+      <find>backwa</find>
+      <find>eff</find>
+      <find>optim</find>
+      <find>max_iter</find>
+      <find>deform</find>
+      <find>resnet_v1_50_deform</find>
+      <find>offset_learning_ratio</find>
+      <find>bias</find>
+      <find>50</find>
+      <find>augment</find>
+      <find>epoch</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,8 +260,29 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/networks/vgg.py" />
-        <option value="$PROJECT_DIR$/tf_ops/wrap_ops.py" />
         <option value="$PROJECT_DIR$/trainings/train_xception.py" />
+        <option value="$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning_op.py" />
+        <option value="$PROJECT_DIR$/tf_ops/cuda_ops.py" />
+        <option value="$PROJECT_DIR$/eval.py" />
+        <option value="$PROJECT_DIR$/datasets/ilsvrc/imagenet_lsvrc_2015_synsets.txt" />
+        <option value="$PROJECT_DIR$/eval_res50.py" />
+        <option value="$PROJECT_DIR$/eval_deform50.py" />
+        <option value="$PROJECT_DIR$/eval_res101.py" />
+        <option value="$PROJECT_DIR$/tf_ops/wrap_ops.py" />
+        <option value="$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.cc" />
+        <option value="$PROJECT_DIR$/networks/deformable_res50.py" />
+        <option value="$PROJECT_DIR$/trainings/train_resnet_deform.py" />
+        <option value="$PROJECT_DIR$/networks/deformable_resnet.py" />
+        <option value="$PROJECT_DIR$/evaling.py" />
+        <option value="$PROJECT_DIR$/evaluatings/eval_res101.py" />
+        <option value="$PROJECT_DIR$/datasets/ilsvrc/ilsvrc_reader.py" />
+        <option value="$PROJECT_DIR$/evaluatings/eval_dfm_res50.py" />
+        <option value="$PROJECT_DIR$/evaluatings/eval_res50.py" />
+        <option value="$PROJECT_DIR$/scripts/train_deform_res50.sh" />
+        <option value="$PROJECT_DIR$/trainings/train_dfm_res50.py" />
+        <option value="$PROJECT_DIR$/evaluatings/eval_dfm_res101.py" />
+        <option value="$PROJECT_DIR$/scripts/train_deform_res101.sh" />
+        <option value="$PROJECT_DIR$/trainings/train_dfm_res101.py" />
       </list>
     </option>
   </component>
@@ -74,9 +293,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="475" />
-    <option name="width" value="1680" />
-    <option name="height" value="1054" />
+    <option name="x" value="1760" />
+    <option name="y" value="-4" />
+    <option name="width" value="1920" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -94,6 +314,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -101,37 +322,10 @@
               <item name="TensorflowModelZoo" type="b2602c69:ProjectViewProjectNode" />
               <item name="TensorflowModelZoo" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="TensorflowModelZoo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorflowModelZoo" type="462c0819:PsiDirectoryNode" />
-              <item name="datasets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorflowModelZoo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorflowModelZoo" type="462c0819:PsiDirectoryNode" />
-              <item name="datasets" type="462c0819:PsiDirectoryNode" />
-              <item name="ilsvrc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorflowModelZoo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorflowModelZoo" type="462c0819:PsiDirectoryNode" />
-              <item name="networks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorflowModelZoo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorflowModelZoo" type="462c0819:PsiDirectoryNode" />
-              <item name="tf_ops" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorflowModelZoo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorflowModelZoo" type="462c0819:PsiDirectoryNode" />
-              <item name="trainings" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -142,7 +336,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/evaluatings" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/evaluatings" />
+      <recent name="$PROJECT_DIR$/scripts" />
+      <recent name="$PROJECT_DIR$/trainings" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/networks" />
     </key>
   </component>
@@ -158,7 +359,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.deformable_resnet">
+    <configuration name="deformable_resnet" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/networks" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="TensorflowModelZoo" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/networks/deformable_resnet.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="vgg" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -178,9 +398,14 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Python.vgg" />
+      <item index="1" class="java.lang.String" itemvalue="Python.deformable_resnet" />
+    </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.vgg" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.deformable_resnet" />
+        <item index="1" class="java.lang.String" itemvalue="Python.vgg" />
       </list>
     </recent_temporary>
   </component>
@@ -212,30 +437,37 @@
       <option name="project" value="LOCAL" />
       <updated>1537432377167</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update train script">
+      <created>1537943098227</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1537943098227</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="475" width="1680" height="1054" extended-state="6" />
+    <frame x="1760" y="-4" width="1920" height="1084" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.096666664" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288889" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15911873" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2854856" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986537" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986537" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24951644" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -250,22 +482,123 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add conv2d_transpose support" />
     <MESSAGE value="add binary cross entropy &amp; fix bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="add binary cross entropy &amp; fix bugs" />
+    <MESSAGE value="update train script" />
+    <option name="LAST_COMMIT_MESSAGE" value="update train script" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/evaluatings/eval_res101.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/networks/deformable_resnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2355">
+          <caret line="170" column="58" lean-forward="false" selection-start-line="170" selection-start-column="58" selection-end-line="170" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/networks/vgg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="63" column="31" lean-forward="false" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trainings/train_dfm_res50.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2652">
+          <caret line="167" column="41" lean-forward="true" selection-start-line="167" selection-start-column="41" selection-end-line="167" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/networks/deformable_resnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="57" column="32" lean-forward="true" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning_op.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv_op.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="24" column="23" lean-forward="true" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/networks/vgg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="63" column="31" lean-forward="false" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datasets/ilsvrc/ilsvrc_reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/wrap_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4080">
+          <caret line="246" column="0" lean-forward="false" selection-start-line="246" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trainings/train_xception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="35" column="24" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/networks/vgg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="63" column="31" lean-forward="false" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trainings/train_xception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3502">
+          <caret line="216" column="0" lean-forward="true" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/networks/vgg.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="63" column="31" lean-forward="true" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
-          <folding>
-            <element signature="e#51#89#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -273,9 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="95" lean-forward="true" selection-start-line="10" selection-start-column="95" selection-end-line="10" selection-end-column="95" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -283,9 +613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
           <caret line="49" column="17" lean-forward="true" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-          <folding>
-            <element signature="e#1926#1944#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -300,9 +627,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="40" lean-forward="false" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
-          <folding>
-            <element signature="e#66#89#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -310,42 +635,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="1433" column="17" lean-forward="false" selection-start-line="1433" selection-start-column="12" selection-end-line="1433" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/datasets/ilsvrc/ilsvrc_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/networks/resnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/networks/vgg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="63" column="31" lean-forward="false" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
-          <folding>
-            <element signature="e#51#89#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tf_ops/wrap_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-216">
-          <caret line="238" column="37" lean-forward="true" selection-start-line="238" selection-start-column="37" selection-end-line="238" selection-end-column="37" />
-          <folding>
-            <element signature="e#66#89#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -353,16 +642,234 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="422">
           <caret line="308" column="34" lean-forward="false" selection-start-line="308" selection-start-column="26" selection-end-line="308" selection-end-column="34" />
-          <folding>
-            <element signature="e#1926#1944#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/anaconda3/lib/python3.6/functools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="240" column="6" lean-forward="false" selection-start-line="240" selection-start-column="6" selection-end-line="240" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_aligning/ps_roi_aligning_op.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_layers/ps_roi_pooling/ps_roi_pooling_op.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="44" lean-forward="false" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="732">
+          <caret line="161" column="48" lean-forward="false" selection-start-line="161" selection-start-column="48" selection-end-line="161" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/augmentation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="293" column="4" lean-forward="false" selection-start-line="293" selection-start-column="4" selection-end-line="293" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datasets/ilsvrc/imagenet_metadata.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/networks/resnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/networks/vgg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="79" column="29" lean-forward="false" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/anaconda3/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40613">
+          <caret line="2413" column="9" lean-forward="false" selection-start-line="2413" selection-start-column="4" selection-end-line="2413" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trainings/train_xception.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notebooks/validate_resnet_group_norm.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/cuda_config.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="30" lean-forward="false" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1394">
+          <caret line="87" column="50" lean-forward="false" selection-start-line="87" selection-start-column="45" selection-end-line="87" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv_op.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="21" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv_grad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/wrap_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="83" column="4" lean-forward="false" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/networks/deformable_resnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5066">
+          <caret line="311" column="34" lean-forward="false" selection-start-line="311" selection-start-column="34" selection-end-line="311" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaling.py" />
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.cu.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3434">
+          <caret line="202" column="12" lean-forward="false" selection-start-line="202" selection-start-column="12" selection-end-line="202" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_ops/cuda_layers/deformable_conv2d/deform_conv.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11611">
+          <caret line="683" column="27" lean-forward="false" selection-start-line="683" selection-start-column="27" selection-end-line="683" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datasets/ilsvrc/ilsvrc_reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datasets/ilsvrc/ilsvrc_writer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="107" column="44" lean-forward="false" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datasets/ilsvrc/imagenet_lsvrc_2015_synsets.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluatings/eval_dfm_res50.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluatings/eval_res50.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluatings/eval_res101.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/train_deform_res50.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trainings/train_dfm_res50.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3723">
+          <caret line="230" column="64" lean-forward="false" selection-start-line="230" selection-start-column="47" selection-end-line="230" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluatings/eval_dfm_res101.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2006">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/train_deform_res101.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trainings/train_dfm_res101.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="58" column="41" lean-forward="false" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

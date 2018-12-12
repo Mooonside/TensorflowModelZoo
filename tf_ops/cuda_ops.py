@@ -1,11 +1,9 @@
 import tensorflow as tf
 
-from tf_ops.cuda_layers.deformable_conv_lib import deform_conv_op
+from tf_ops.cuda_layers.deformable_conv2d import deform_conv_op
 from tf_ops.cuda_layers.ps_roi_pooling import ps_roi_pooling_op
-from tf_ops.cuda_layers.ps_roi_aligning.ps_roi_aligning_op import ps_roi_aligning
-from tf_ops.cuda_layers.roi_align.roi_align_op import roi_align
 
-from tf_ops.wrap_ops import same_padding, tensor_shape, get_variable, conv2d, batch_norm2d, GroupNorm2D
+from tf_ops.wrap_ops import same_padding, tensor_shape, conv2d, batch_norm, group_norm2d
 
 add_arg_scope = tf.contrib.framework.add_arg_scope
 
@@ -25,98 +23,88 @@ BN_COLLECTIONS = [batch_norm_collections, TRAINABLE_VARIABLES, GLOBAL_VARIABLES]
 LOSS_COLLECTIONS = tf.GraphKeys.LOSSES
 
 @add_arg_scope
-def deform_conv2d(inputs, outc, ksize, strides=[1, 1], ratios=[1, 1], name=None, padding='SAME',
-                  activate=tf.nn.relu, deformable_group=1, num_groups=1,
-                  batch_norm=True, group_norm=False, use_bias=None,
-                  weight_init=None, weight_reg=None,
-                  bias_init=tf.zeros_initializer, bias_reg=None,
-                  offset_init=tf.zeros_initializer, offset_reg=None,
-                  outputs_collections=None, offsets_collections='offsets'):
-    """
-    Wrapper for Conv layers
-    :param inputs: [N, H, W, C]
-    :param outc: output channels
-    :param ksize: [hk, wk]
-    :param strides: [hs, ws]
-    :param ratios: [hr, wr]
-    :param name: var_scope & operation name
-    :param padding: padding mode
-    :param activate: activate function
-    :param batch_norm: whether performs batch norm
-    :param use_bias: whether use bias addition
-    :param weight_init: weight initializer
-    :param weight_reg: weight regularizer
-    :param bias_init: bias initializer
-    :param bias_reg: bias regularizer
-    :param outputs_collections: add result to some collection
-    :return: convolution after activation
-    """
-    # can't use both
-    if use_bias is None:
-        use_bias = not batch_norm
-    assert not (batch_norm and use_bias)
-    assert outc % num_groups == 0, print('outc % num_groups != 0')
+def deform_conv2d(inputs,
+                  num_outputs,
+                  kernel_size,
+                  stride=1,
+                  rate=1,
+                  padding='SAME',
+                  activation_fn=tf.nn.relu,
+                  deformable_group=1,
+                  num_groups=1,
+                  normalizer_fn=None,
+                  weights_initializer=None,
+                  weights_regularizer=None,
+                  biases_initializer=tf.zeros_initializer,
+                  biases_regularizer=None,
+                  outputs_collections=None,
+                  offsets_collections='offsets',
+                  scope=None):
+    assert num_outputs % num_groups == 0, print('outc % num_groups != 0')
+    kernel_size = [kernel_size, kernel_size] if type(kernel_size) is int else kernel_size
+    stride = [stride, stride] if type(stride) is int else stride
+    rate = [rate, rate] if type(rate) is int else rate
 
-    with tf.variable_scope(name, 'deform_conv2d'):
+    with tf.variable_scope(scope, 'deform_conv2d'):
         _, iH, iW, indim = tensor_shape(inputs)
         assert indim % num_groups == 0, print('indim % num_groups != 0')
         assert indim % deformable_group == 0, print('indim % deformable_group != 0')
 
-        # use num groups xixi
-        filters = get_variable(name='weights', shape=ksize + [indim // num_groups, outc],
-                               init=weight_init, reg=weight_reg, collections=WEIGHT_COLLECTIONS)
-
-        # use get_variable merely for debug!
         offsets = conv2d(
             inputs,
-            outc=ksize[0] * ksize[1] * 2 * deformable_group,
-            ksize=ksize,
-            strides=strides,
-            ratios=ratios,
+            num_outputs= kernel_size[0] * kernel_size[1] * 2 * deformable_group,
+            kernel_size=kernel_size,
+            stride=stride,
+            rate=rate,
             padding=padding,
-            batch_norm=False,
-            group_norm=False,
-            use_bias=True,
-            activate=None,
-            name='conv_offsets',
+            normalizer_fn=None,
+            activation_fn=None,
             # may be using zero initializer?
             # weight_init=tf.zeros_initializer,
-            weight_init=weight_init,
-            weight_reg=weight_reg,
-            bias_init=tf.zeros_initializer,
-            bias_reg=None,
-            outputs_collections=offsets_collections
+            weights_initializer=weights_initializer,
+            weights_regularizer=weights_regularizer,
+            biases_initializer=tf.zeros_initializer,
+            biases_regularizer=None,
+            outputs_collections=offsets_collections,
+            scope = 'conv_offsets'
         )
         offsets = tf.transpose(offsets, [0, 3, 1, 2])
-        tf.add_to_collection('offsets', offsets)
+        # TODO: MAYA
+        offsets *= 0.0
+
+        filters = tf.get_variable(name='weights',
+                                  shape= kernel_size + [indim // num_groups, num_outputs],
+                                  initializer=weights_initializer,
+                                  regularizer=weights_regularizer)
+
         # transpose filters to required order
         # [outC, inC, ksize, ksize]
         filters = tf.transpose(filters, [3, 2, 0, 1])
-
         inputs = tf.transpose(inputs, [0, 3, 1, 2])
         conv = deform_conv_op.deform_conv_op(x=inputs,
                                              filter=filters,
                                              offset=offsets,
-                                             strides=[1, 1] + strides,
-                                             rates=[1, 1] + ratios,
+                                             strides=[1, 1] + stride,
+                                             rates=[1, 1] + rate,
                                              num_groups=num_groups,
                                              padding=padding,
                                              deformable_group=deformable_group,
-                                             name=name)
+                                             name=scope)
         conv = tf.transpose(conv, [0, 2, 3, 1])
 
         # tf.add_to_collection(outputs_collections, conv)
-        if batch_norm:
-            conv = batch_norm2d(conv)
-        elif group_norm:
-            conv = GroupNorm2D(conv)
-        elif use_bias:
-            biases = get_variable(name='biases', shape=[outc], init=bias_init, reg=bias_reg,
-                                  collections=BIAS_COLLECTIONS)
+        if normalizer_fn is not None:
+            conv = normalizer_fn(conv)
+        elif biases_initializer is not None:
+            biases = tf.get_variable(name='biases',
+                                     shape=[num_outputs],
+                                     initializer=biases_initializer,
+                                     regularizer=biases_regularizer,
+                                     collections=BIAS_COLLECTIONS)
             conv = conv + biases
 
-        if activate is not None:
-            conv = activate(conv)
+        if activation_fn is not None:
+            conv = activation_fn(conv)
 
     tf.add_to_collection(outputs_collections, conv)
     return conv

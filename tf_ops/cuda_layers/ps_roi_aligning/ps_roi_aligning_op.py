@@ -1,8 +1,9 @@
 import tensorflow as tf
 from tensorflow.python.framework import ops
+import os.path as osp
 import numpy as np
 
-_ps_roi_aligning_module = tf.load_op_library('ps_roi_aligning.so')
+_ps_roi_aligning_module = tf.load_op_library(osp.join(osp.dirname(__file__), 'ps_roi_aligning.so'))
 _ps_roi_aligning = _ps_roi_aligning_module.ps_roi_aligning
 _ps_roi_aligning_bp = _ps_roi_aligning_module.ps_roi_aligning_bp
 

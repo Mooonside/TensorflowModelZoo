@@ -93,6 +93,7 @@ def bottleneck(inputs,
         residual = conv2d(
             residual, depth, 1, stride=1, activation_fn=None, scope='conv3')
 
+        # utils.collect_named_outputs(outputs_collections, sc.name + '/unrelu', residual)
         output = nn_ops.relu(shortcut + residual)
         return utils.collect_named_outputs(outputs_collections, sc.name, output)
 
@@ -136,8 +137,9 @@ def resnet_v1_block(scope, base_depth, num_units, stride, rate=1):
                                   'depth': base_depth * 4,
                                   'depth_bottleneck': base_depth,
                                   'stride': 1,
-                                  'rate': 1
+                                  'rate': rate
                               }] * (num_units - 1))
+
 
 
 def resnet_v1_50(inputs,
@@ -146,6 +148,7 @@ def resnet_v1_50(inputs,
                  global_pool=True,
                  reuse=None,
                  rates=(1, 1, 1, 1),
+                 normalize_inside=True,
                  scope='resnet_v1_50'):
     """ResNet-50 model of [1]. See resnet_v1() for arg and return description."""
     blocks = [
@@ -162,6 +165,7 @@ def resnet_v1_50(inputs,
         global_pool,
         include_root_block=True,
         reuse=reuse,
+        normalize_inside=normalize_inside,
         scope=scope)
 
 
@@ -171,6 +175,7 @@ def resnet_v1_101(inputs,
                   global_pool=True,
                   reuse=None,
                   rates=(1, 1, 1, 1),
+                  normalize_inside=True,
                   scope='resnet_v1_101'):
     """
     ResNet-101 model of [1]. See resnet_v1() for arg and return description.
@@ -190,6 +195,7 @@ def resnet_v1_101(inputs,
         global_pool,
         include_root_block=True,
         reuse=reuse,
+        normalize_inside=normalize_inside,
         scope=scope)
 
 
@@ -240,6 +246,7 @@ def resnet_v1(inputs,
                     net = math_ops.reduce_mean(net, [1, 2], name='pool5', keepdims=True)
                     net = utils.collect_named_outputs(end_points_collection,
                                                       sc.name+'/gap', net)
+
                 if num_classes is not None:
                     net = conv2d(
                         net,
@@ -249,6 +256,7 @@ def resnet_v1(inputs,
                         scope='logits')
                 # Convert end_points_collection into a dictionary of end_points.
                 end_points = utils.convert_collection_to_dict(end_points_collection)
+
                 if num_classes is not None:
                     end_points['predictions'] = layers_lib.softmax(
                         net, scope='predictions')

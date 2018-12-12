@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="10.214.143.24">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="10.214.143.225">
     <serverData>
+      <paths name="10.214.143.14">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/chenyifeng/TensorflowModelZoo" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="10.214.143.225">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/chenyifeng/TensorflowModelZoo" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="10.214.143.24">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/chenyifeng/TensorflowModelZoo" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="10.214.143.25">
         <serverdata>
           <mappings>
             <mapping deploy="/home/chenyifeng/TensorflowModelZoo" local="$PROJECT_DIR$" web="/" />

@@ -19,8 +19,8 @@ FLAGS = None
 # TRAIN_DIR = '/data/chenyifeng/TF_Records/ILSVRC_2015_CLS/train'
 # VALIDATION_DIR = '/data/chenyifeng/TF_Records/ILSVRC_2015_CLS/val'
 
-TRAIN_DIR = '/mnt/disk50_CHENYIFENG/TF_Records/ILSVRC_2015_CLS/train'
-VALIDATION_DIR = '/mnt/disk50_CHENYIFENG/TF_Records/ILSVRC_2015_CLS/val'
+TRAIN_DIR = 'volume/TF_Records/ILSVRC_2015_CLS/train'
+VALIDATION_DIR = 'volume/TF_Records/ILSVRC_2015_CLS/val'
 
 TRAIN_NUM = 1281167
 VALID_NUM = 50000
@@ -63,12 +63,6 @@ def extract(features):
     name = features['image/filename']
 
     return name, image, label, bboxes
-
-
-def normalize(name, image, label):
-    # Convert from [0, 255] -> [-1.0, 1.0] floats.
-    image = (2.0 / 255.0) * image - 1.0
-    return name, image, label
 
 
 def reshape(name, image, label, bboxes, reshape_size=None):
@@ -119,14 +113,10 @@ def eval_preprocess(name, image, label, bboxes):
 
 
 def get_dataset(dir, batch_size, num_epochs, reshape_size,
-                num_readers=1, augment_func=inception_augmentation):
+                num_readers=1, augment_func=inception_augmentation, shuffle=1000):
     if not num_epochs:
         num_epochs = None
     filenames = [os.path.join(dir, i) for i in os.listdir(dir)]
-    shuffle_idx = arange(len(filenames))
-    shuffle(shuffle_idx)
-
-    filenames = [filenames[shuffle_idx[idx]] for idx in range(len(filenames))]
 
     with tf.name_scope('input'):
         # TFRecordDataset opens a protobuf and reads entries line by line
@@ -146,10 +136,9 @@ def get_dataset(dir, batch_size, num_epochs, reshape_size,
             dataset = dataset.map(augment_func)
         dataset = dataset.map(set_parameter(reshape, reshape_size=reshape_size))
 
-        dataset = dataset.map(normalize)
-
-        # the parameter is the queue size
-        dataset = dataset.shuffle(1000 + 3 * batch_size)
+        if shuffle is not None:
+            # the parameter is the queue size
+            dataset = dataset.shuffle(shuffle + 3 * batch_size)
         dataset = dataset.batch(batch_size)
     return dataset
 

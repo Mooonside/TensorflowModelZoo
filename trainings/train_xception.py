@@ -24,7 +24,7 @@ flags.DEFINE_integer('epoch_len', TRAIN_NUM, 'epoch_len')
 flags.DEFINE_integer('batch_size', 16, 'batch size')
 # 0.045 in xception paper
 # LOG : 0.045/10 => 0.02 for 5 => 0.01 for 10 => 0.0025
-flags.DEFINE_float('weight_learning_rate', 0.0025, 'weight learning rate')
+flags.DEFINE_float('weight_learning_rate', 2.5e-4, 'weight learning rate')
 # 0.05 in train ILSVRC in one hour
 # flags.DEFINE_float('weight_learning_rate', 0.05, 'weight learning rate')
 
@@ -129,12 +129,12 @@ def inference_to_loss(gpu_id):
     return loss, accuracy
 
 
-# learning_rate = FLAGS.weight_learning_rate
-learning_rate = tf.train.polynomial_decay(learning_rate=FLAGS.weight_learning_rate,
-                                          global_step=global_step,
-                                          decay_steps=FLAGS.max_iter * EPOCH_STEPS,
-                                          power=FLAGS.decay_rate,
-                                          end_learning_rate=1e-5)
+learning_rate = FLAGS.weight_learning_rate
+# learning_rate = tf.train.polynomial_decay(learning_rate=FLAGS.weight_learning_rate,
+#                                           global_step=global_step,
+#                                           decay_steps=FLAGS.max_iter * EPOCH_STEPS,
+#                                           power=FLAGS.decay_rate,
+#                                           end_learning_rate=1e-5)
 # Exp learning rate decay
 # learning_rate = tf.train.exponential_decay(
 #     learning_rate = FLAGS.weight_learning_rate,

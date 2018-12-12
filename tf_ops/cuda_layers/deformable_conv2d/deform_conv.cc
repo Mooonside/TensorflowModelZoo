@@ -85,7 +85,7 @@ REGISTER_OP("DeformConvOp").Input("x: T")
                    rates.size());
     }
     string data_format;
-    TensorFormat data_format_;    
+    TensorFormat data_format_;
     TF_RETURN_IF_ERROR(c->GetAttr("data_format", &data_format));
     FormatFromString(data_format, &data_format_);
     const int32 stride_rows = GetTensorDim(strides, data_format_, 'H');
@@ -101,7 +101,7 @@ REGISTER_OP("DeformConvOp").Input("x: T")
     TF_RETURN_IF_ERROR(c->GetAttr("deformable_group", &deform_groups));
 
     DimensionHandle batch_size_dim = c->Dim(input_shape, 0);
-    DimensionHandle in_depths_dim = c->Dim(input_shape, 1);    
+    DimensionHandle in_depths_dim = c->Dim(input_shape, 1);
     DimensionHandle in_rows_dim = c->Dim(input_shape, 2);
     DimensionHandle in_cols_dim = c->Dim(input_shape, 3);
     DimensionHandle filter_rows_dim = c->Dim(filter_shape, 2);
@@ -516,6 +516,8 @@ public:
 
     for (int n = 0; n <num_; ++n) {
         // transform image to col_buffer_3d in order to use gemm
+                // TODO: DEBUG col_buf_shape here!
+
         functor::deformable_im2col<Device, T>()(d, in_data_ptr + n*input_dim_,
                           offset_ptr + n*input_offset_dim_, ToVector(ishape),
                           ToVector(col_buf_shape), (this->param_->kernel), (this->param_->pad), (this->param_->stride), (this->param_->rates), deformable_group,
@@ -673,12 +675,17 @@ class DeformConvBackpropOp : public OpKernel {
     const int filter_rows = static_cast<int>(filter.dim_size(2));
     const int input_cols = static_cast<int>(input_cols_raw);
     const int filter_cols = static_cast<int>(filter.dim_size(3));
+
+    const int filter_rows_eff = filter_rows + (filter_rows - 1) * (rate_rows - 1);
+    const int filter_cols_eff = filter_cols + (filter_cols - 1) * (rate_cols - 1);
+
     int64 pad_rows = 0, pad_cols = 0;
+    //TODO: become effective here!
     OP_REQUIRES_OK(context,
-                   GetWindowedOutputSize(input_rows, filter_rows, stride_rows,
+                   GetWindowedOutputSize(input_rows, filter_rows_eff, stride_rows,
                                          padding_, &out_rows, &pad_rows));
     OP_REQUIRES_OK(context,
-                   GetWindowedOutputSize(input_cols, filter_cols, stride_cols,
+                   GetWindowedOutputSize(input_cols, filter_cols_eff, stride_cols,
                                          padding_, &out_cols, &pad_cols));
     TShape pad({static_cast<int>(pad_rows), static_cast<int>(pad_cols)});
     TShape stride({stride_rows, stride_cols});

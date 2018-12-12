@@ -2,8 +2,32 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="662ecf98-f460-41a2-a5b0-cc5e49e31dc9" name="10.214.143.24" url="http://10.214.143.24">
+      <webServer id="662ecf98-f460-41a2-a5b0-cc5e49e31dc9" name="10.214.143.25" url="http://10.214.143.25">
+        <fileTransfer host="10.214.143.25" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="4537d95b-46b8-4fed-933e-f339ba855286" name="10.214.143.14" url="http://10.214.143.14">
+        <fileTransfer host="10.214.143.14" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="4040adbd-e152-4346-93ba-29d9a03c19d3" name="10.214.143.24" url="http://10.214.143.24">
         <fileTransfer host="10.214.143.24" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="614d9685-45f0-4bcc-b019-62944210e6fe" name="10.214.143.225" url="http://10.214.143.225">
+        <fileTransfer host="10.214.143.225" port="22" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
